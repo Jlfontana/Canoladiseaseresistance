@@ -1,0 +1,11 @@
+# Create a new text file and write content to it
+echo "This is a new file created by a script." > example.txt
+
+# Add the new file to git
+git add example.txt
+
+# Commit the new file
+git commit -m "Add example.txt created by script"
+
+# (Optional) Push to remote repository
+# git push
