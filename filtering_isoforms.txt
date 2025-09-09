@@ -1,0 +1,41 @@
+#####Extract sequences from GFF3:
+
+To extract genes: agat_sp_extract_sequences.pl -g infile.gff -f infile.fasta -t cds -- full > output.fasta 
+
+agat_sp_extract_sequences.pl -g Brapa_chiifu_v41_gene20230413.gff3 -f Brapa_chiifu_v41_genome20230413_FOLDED.fasta -t cds -- full > Brapa_chiifu_v41_gene20230413_CDS.fasta 
+
+To extract proteins: agat_sp_extract_sequences.pl -g infile.gff -f infile.fasta -p > output.fasta
+#or
+agat_sp_extract_sequences.pl -g infile.gff -f infile.fasta -t cds -p > output.fasta
+
+agat_sp_extract_sequences.pl -g Brapa_chiifu_v41_gene20230413.gff3 -f Brapa_chiifu_v41_genome20230413_FOLDED.fasta -p -- full > Brapa_chiifu_v41_gene20230413_prot.fasta 
+
+
+#if you get this error: "MSG: Each line of the file must be less than 65,536 characters" you must fold first:
+fold input.fa > output.fa
+fold Brapa_chiifu_v41_genome20230413.fasta > Brapa_chiifu_v41_genome20230413_FOLDED.fasta
+
+
+
+
+#####To keep the longest isoform in GFF3/GTF file:
+
+
+agat_sp_keep_longest_isoform.pl -gff file.gff -o outfile.gff3
+
+#We can also use --gff or -f for gtf/gff file
+
+agat_sp_keep_longest_isoform.pl -gff Brapa_chiifu_v41_gene20230413.gff3 -o Brapa_chiifu_v41_gene20230413_longest.gff3
+
+
+agat_sp_extract_sequences.pl -g Brapa_chiifu_v41_gene20230413_longest.gff3 -f Brapa_chiifu_v41_genome20230413_FOLDED.fasta -t cds -- full > Brapa_chiifu_v41_gene20230413_CDS_longest.fasta 
+
+agat_sp_extract_sequences.pl -g Brapa_chiifu_v41_gene20230413_longest.gff3 -f Brapa_chiifu_v41_genome20230413_FOLDED.fasta -p -- full > Brapa_chiifu_v41_gene20230413_prot_longest.fasta 
+
+
+##### To get statistics for gff files
+
+agat_sp_statistics.pl --gff input.gff3 -o output_name
+
+agat_sp_statistics.pl --gff Brapa_chiifu_v41_gene20230413_longest.gff3 -o Brapa_chiifu_longest_stat
+ 
